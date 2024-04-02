@@ -20,6 +20,18 @@ public class KnihaSluzba {
         this.knihy = knihy;
     }
 
+    public static class SeznamKnih {
+        private List<Kniha> knihy;
+
+        public List<Kniha> getKnihy() {
+            return knihy;
+        }
+
+        public void setKnihy(List<Kniha> knihy) {
+            this.knihy = knihy;
+        }
+    }
+    private final SeznamKnih seznamKnih;
     private final ObjectMapper objectMapper = JsonMapper.builder()
             .addModule(new JavaTimeModule())
             .build();
@@ -27,10 +39,24 @@ public class KnihaSluzba {
     // cesta "src/main/resources/cz/czechitas/ukol07/knihy.json"
     private InputStream knihyStream = KnihaSluzba.class.getResourceAsStream("knihy.json");
 
-    public KnihaSluzba() throws IOException {
+    public KnihaSluzba(SeznamKnih seznamKnih) throws IOException {
+        this.seznamKnih = seznamKnih;
         knihy = objectMapper.readValue(knihyStream, new TypeReference<List<Kniha>>() {
         });
         //try(){};
+    }
+
+    public List<String> vratSeznamKnih() {
+        return seznamKnih.getKnihy()
+                .stream().map(Kniha::getNazev)
+                .toList();
+    }
+
+    public List<String> vratKnihyOdAutora(String autor) {
+        return seznamKnih.getKnihy().stream()
+                .filter(kniha -> kniha.getAutor().equals(autor))
+                .map(Kniha::getNazev)
+                .toList();
     }
 
 }
