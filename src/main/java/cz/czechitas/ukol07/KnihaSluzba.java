@@ -10,7 +10,7 @@ import java.io.InputStream;
 import java.util.List;
 
 public class KnihaSluzba {
-    private List<Kniha> knihy;
+    private List<Kniha> knihy; // knihy = 14
 
     public List<Kniha> getKnihy() {
         return knihy;
@@ -31,16 +31,16 @@ public class KnihaSluzba {
             this.knihy = knihy;
         }
     }
-    private final SeznamKnih seznamKnih;
+    private SeznamKnih seznamKnih; // null
+
     private final ObjectMapper objectMapper = JsonMapper.builder()
             .addModule(new JavaTimeModule())
             .build();
 
-    // cesta "src/main/resources/cz/czechitas/ukol07/knihy.json"
-    private InputStream knihyStream = KnihaSluzba.class.getResourceAsStream("knihy.json");
-
-    public KnihaSluzba(SeznamKnih seznamKnih) throws IOException {
+    public KnihaSluzba() throws IOException {
         this.seznamKnih = seznamKnih;
+        // proč cesta není "src/main/resources/cz/czechitas/ukol07/knihy.json" ?
+        InputStream knihyStream = KnihaSluzba.class.getResourceAsStream("knihy.json");
         knihy = objectMapper.readValue(knihyStream, new TypeReference<List<Kniha>>() {
         });
         //try(){};
