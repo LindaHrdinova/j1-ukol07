@@ -32,5 +32,13 @@ public class Aplikace {
             System.out.println("Knihy od Karla Čapka:");
             knihyKarelCapek.forEach((kniha) -> System.out.printf("- %s", kniha).println());
         }
+
+        List<String> knihyZRoku1945 = seznamKnihy.vratKnihyZRoku(1945);
+        if (vsechnyKnihy.isEmpty()) {
+            System.out.println("V roce 1945 nevyšla kniha.");
+        } else {
+            System.out.println("Knihy z roku 1945:");
+            knihyZRoku1945.forEach((kniha) -> System.out.printf(seznamKnihy.getKnihy().getFirst().getAutor() + "- %s", kniha).println());
+        }
     }
 }

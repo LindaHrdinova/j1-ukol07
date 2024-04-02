@@ -39,7 +39,6 @@ public class KnihaSluzba {
             .build();
 
     public KnihaSluzba() throws IOException {
-        this.seznamKnih = seznamKnih;
         // proč cesta není "src/main/resources/cz/czechitas/ukol07/knihy.json" ?
         InputStream knihyStream = KnihaSluzba.class.getResourceAsStream("knihy.json");
         knihy = objectMapper.readValue(knihyStream, new TypeReference<List<Kniha>>() {

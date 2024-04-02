@@ -4,7 +4,6 @@ import cz.czechitas.ukol07.KnihaSluzba;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.time.MonthDay;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
