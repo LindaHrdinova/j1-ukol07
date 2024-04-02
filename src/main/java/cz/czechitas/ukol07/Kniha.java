@@ -9,7 +9,7 @@ public class Kniha {
         return autor;
     }
 
-    public void setAutor(String autor) {
+    public void setAutor() {
         this.autor = autor;
     }
 
