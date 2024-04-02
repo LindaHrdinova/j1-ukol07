@@ -31,6 +31,7 @@ public class KnihaSluzba {
             this.knihy = knihy;
         }
     }
+
     private SeznamKnih seznamKnih; // null
 
     private final ObjectMapper objectMapper = JsonMapper.builder()
