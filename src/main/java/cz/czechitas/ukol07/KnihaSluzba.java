@@ -59,4 +59,11 @@ public class KnihaSluzba {
                 .toList();
     }
 
+    public List<String> vratKnihyZRoku(Number rokVydani) {
+        return seznamKnih.getKnihy().stream()
+                .filter(kniha -> kniha.getRokVydani().equals(rokVydani))
+                .map(Kniha::getNazev)
+                .toList();
+    }
+
 }
