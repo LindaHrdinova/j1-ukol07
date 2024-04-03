@@ -32,6 +32,14 @@ public class KnihaSluzba {
         }
     }
 
+    public SeznamKnih getSeznamKnih() {
+        return seznamKnih;
+    }
+
+    public void setSeznamKnih(SeznamKnih seznamKnih) {
+        this.seznamKnih = seznamKnih;
+    }
+
     private SeznamKnih seznamKnih; // null
 
     private final ObjectMapper objectMapper = JsonMapper.builder()
