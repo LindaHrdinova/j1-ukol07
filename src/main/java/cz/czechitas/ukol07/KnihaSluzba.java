@@ -10,7 +10,7 @@ import java.io.InputStream;
 import java.util.List;
 
 public class KnihaSluzba {
-    private List<Kniha> knihy; // knihy = 14
+    private List<Kniha> knihy;
 
     public List<Kniha> getKnihy() {
         return knihy;
@@ -20,58 +20,35 @@ public class KnihaSluzba {
         this.knihy = knihy;
     }
 
-    public static class SeznamKnih {
-        private List<Kniha> knihy;
-
-        public List<Kniha> getKnihy() {
-            return knihy;
-        }
-
-        public void setKnihy(List<Kniha> knihy) {
-            this.knihy = knihy;
-        }
-    }
-
-    public SeznamKnih getSeznamKnih() {
-        return seznamKnih;
-    }
-
-    public void setSeznamKnih(SeznamKnih seznamKnih) {
-        this.seznamKnih = seznamKnih;
-    }
-
-    private SeznamKnih seznamKnih; // null
-
     private final ObjectMapper objectMapper = JsonMapper.builder()
             .addModule(new JavaTimeModule())
             .build();
 
     public KnihaSluzba() throws IOException {
-        // proč cesta není "src/main/resources/cz/czechitas/ukol07/knihy.json" ?
-        InputStream knihyStream = KnihaSluzba.class.getResourceAsStream("knihy.json");
-        knihy = objectMapper.readValue(knihyStream, new TypeReference<List<Kniha>>() {
-        });
-        //try(){};
+        // cesta není "src/main/resources/cz/czechitas/ukol07/knihy.json" protože Java-magie
+        try (InputStream knihyStream = KnihaSluzba.class.getResourceAsStream("knihy.json")) {
+            knihy = objectMapper.readValue(knihyStream, new TypeReference<>() {
+            });
+        }
     }
 
     public List<String> vratSeznamKnih() {
-        return seznamKnih.getKnihy()
-                .stream().map(Kniha::getNazev)
+        return knihy.stream()
+                .map(Kniha::getNazev)
                 .toList();
     }
 
     public List<String> vratKnihyOdAutora(String autor) {
-        return seznamKnih.getKnihy().stream()
+        return knihy.stream()
                 .filter(kniha -> kniha.getAutor().equals(autor))
                 .map(Kniha::getNazev)
                 .toList();
     }
 
     public List<String> vratKnihyZRoku(Number rokVydani) {
-        return seznamKnih.getKnihy().stream()
+        return knihy.stream()
                 .filter(kniha -> kniha.getRokVydani().equals(rokVydani))
                 .map(Kniha::getNazev)
                 .toList();
     }
-
 }

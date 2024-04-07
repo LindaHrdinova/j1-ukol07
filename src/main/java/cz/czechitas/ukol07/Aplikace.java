@@ -16,8 +16,8 @@ public class Aplikace {
      * Hlavní metoda obsahující výkonný kód.
      */
     public void run() throws IOException {
-        KnihaSluzba seznamKnihy = new KnihaSluzba();
-        List<String> vsechnyKnihy = seznamKnihy.vratSeznamKnih();
+        KnihaSluzba knihaSluzba = new KnihaSluzba();
+        List<String> vsechnyKnihy = knihaSluzba.vratSeznamKnih();
         if (vsechnyKnihy.isEmpty()) {
             System.out.println("V databázy nejsou žásné knihy.");
         } else {
@@ -25,7 +25,7 @@ public class Aplikace {
             vsechnyKnihy.forEach((kniha) -> System.out.printf("- %s", kniha).println());
         }
 
-        List<String> knihyKarelCapek = seznamKnihy.vratKnihyOdAutora("Karel Čapek");
+        List<String> knihyKarelCapek = knihaSluzba.vratKnihyOdAutora("Karel Čapek");
         if (vsechnyKnihy.isEmpty()) {
             System.out.println("Karel Čapek nic nenapsal.");
         } else {
@@ -33,12 +33,12 @@ public class Aplikace {
             knihyKarelCapek.forEach((kniha) -> System.out.printf("- %s", kniha).println());
         }
 
-        List<String> knihyZRoku1945 = seznamKnihy.vratKnihyZRoku(1945);
+        List<String> knihyZRoku1945 = knihaSluzba.vratKnihyZRoku(1945);
         if (vsechnyKnihy.isEmpty()) {
             System.out.println("V roce 1945 nevyšla kniha.");
         } else {
             System.out.println("Knihy z roku 1945:");
-            knihyZRoku1945.forEach((kniha) -> System.out.printf(seznamKnihy.getKnihy().getFirst().getAutor() + " : " + seznamKnihy.getKnihy().getFirst().getNazev() + "- %s", kniha).println());
+            knihyZRoku1945.forEach((kniha) -> System.out.printf(knihaSluzba.getKnihy().getFirst().getAutor() + " : " + knihaSluzba.getKnihy().getFirst().getNazev() + "- %s", kniha).println());
         }
     }
 }
