@@ -9,10 +9,10 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class KnihySluzbaTest {
+public class KnihySluzbaTest2 {
     KnihaSluzba knihy = new KnihaSluzba();
 
-    public KnihySluzbaTest() throws IOException {
+    public KnihySluzbaTest2() throws IOException {
     }
 
     @Test

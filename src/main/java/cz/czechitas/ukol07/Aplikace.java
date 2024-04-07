@@ -38,7 +38,7 @@ public class Aplikace {
             System.out.println("V roce 1945 nevyšla kniha.");
         } else {
             System.out.println("Knihy z roku 1945:");
-            knihyZRoku1945.forEach((kniha) -> System.out.printf(knihaSluzba.getKnihy().getFirst().getAutor() + " : " + knihaSluzba.getKnihy().getFirst().getNazev() + "- %s", kniha).println());
+            knihyZRoku1945.forEach((kniha) -> System.out.printf( + " : " + knihaSluzba.getKnihy().getFirst().getNazev() + "- %s", kniha).println());
         }
     }
 }
