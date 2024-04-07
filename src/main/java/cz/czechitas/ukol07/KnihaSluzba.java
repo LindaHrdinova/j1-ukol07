@@ -32,23 +32,19 @@ public class KnihaSluzba {
         }
     }
 
-    public List<String> vratSeznamKnih() {
-        return knihy.stream()
-                .map(Kniha::getNazev)
-                .toList();
+    public List<Kniha> vratSeznamKnih() {
+        return knihy;
     }
 
-    public List<String> vratKnihyOdAutora(String autor) {
+    public List<Kniha> vratKnihyOdAutora(String autor) {
         return knihy.stream()
                 .filter(kniha -> kniha.getAutor().equals(autor))
-                .map(Kniha::getNazev)
-                .toList();
+                .toList(); //toList protože musím změnit stream() zpátky na list
     }
 
-    public List<String> vratKnihyZRoku(Number rokVydani) {
+    public List<Kniha> vratKnihyZRoku(int rokVydani) {
         return knihy.stream()
-                .filter(kniha -> kniha.getRokVydani().equals(rokVydani))
-                .map(Kniha::getNazev)
+                .filter(kniha -> kniha.getRokVydani() == rokVydani)
                 .toList();
     }
 }
