@@ -50,7 +50,7 @@ public class KnihySluzbaTest {
     }
 
     @Test
-    void vyhledatKnihyKRokuNazvyLsit() {
+    void vyhledatKnihyKRokuNazvyList() {
         assertEquals(
                 List.of("V zámku a podzámčí", "Divá Bára"),
                 knihy.vratKnihyZRoku(1856).stream()
